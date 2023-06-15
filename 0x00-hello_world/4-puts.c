@@ -1,4 +1,4 @@
-#include <stio.h>
+#include <stdio.h>
 
 /*
  * main: the includes a print function that prints 'Programming is like building a multilingual puzzle
