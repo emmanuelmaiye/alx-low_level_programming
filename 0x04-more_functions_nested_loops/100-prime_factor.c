@@ -1,26 +1,24 @@
-#include "holberton.h"
+#include <stdio.h>
 
 /**
- * print_triangle - Prints a triangle
- * @size: sets the size of the triangle
+ * main -  checks for checks for a digit (0 through 9).
  *
- * Return: nothing
+ * Return: Always 0.
  */
-
-void print_triangle(int size)
+int main(void)
 {
-	int i, j;
+	long x, y;
 
-	if (size > 0)
-		for (i = size; i > 0; i--)
+	x = 612852475143;
+
+	for (y = 2; x > y; y++)
+	{
+		while (x % y == 0)
 		{
-			for (j = 1; j <= size; j++)
-				if (j >= i)
-					_putchar('#');
-				else
-					_putchar(' ');
-			_putchar('\n');
+			x = x / y;
 		}
-	else
-		_putchar('\n');
+	}
+	printf("%lu", y);
+	putchar('\n');
+	return (0);
 }
