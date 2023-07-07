@@ -1,0 +1,1 @@
+compiling static liberaries
