@@ -39,6 +39,30 @@ void free_everything(char **string, int i)
 }
 
 /**
+ * allocate_word - allocates memory for a word and copies it
+ * @found_word: pointer to the beginning of the word
+ * @length: length of the word
+ *
+ * Return: pointer to the allocated memory containing the word
+ */
+char *allocate_word(char *found_word, int length)
+{
+	char *word = malloc((length + 1) * sizeof(char));
+
+	if (word == NULL)
+		return (NULL);
+
+	int i;
+	for (i = 0; i < length; i++)
+	{
+		word[i] = found_word[i];
+	}
+	word[length] = '\0';
+
+	return (word);
+}
+
+/**
  * strtow - function that splits string into words
  * @str: string being passed
  * Return: null if string is empty or null or function fails
@@ -48,13 +72,13 @@ char **strtow(char *str)
 	int total_words = 0, b = 0, c = 0, length = 0;
 	char **words, *found_word;
 
-	if (str == 0 || *str == 0)
+	if (str == NULL || *str == '\0')
 		return (NULL);
 	total_words = number(str);
 	if (total_words == 0)
 		return (NULL);
 	words = malloc((total_words + 1) * sizeof(char *));
-	if (words == 0)
+	if (words == NULL)
 		return (NULL);
 	for (; *str != '\0' && b < total_words;)
 	{
@@ -68,19 +92,12 @@ char **strtow(char *str)
 				length++;
 				str++;
 			}
-			words[b] = malloc((length + 1) * sizeof(char));
-			if (words[b] == 0)
+			words[b] = allocate_word(found_word, length);
+			if (words[b] == NULL)
 			{
 				free_everything(words, b);
 				return (NULL);
 			}
-			while (*found_word != ' ' && *found_word != '\0')
-			{
-				words[b][c] = *found_word;
-				found_word++;
-				c++;
-			}
-			words[b][c] = '\0';
 			b++;
 			c = 0;
 			length = 0;
